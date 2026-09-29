@@ -222,24 +222,32 @@ document.getElementById("deleteFav").onclick = () => {
 ==============================
 検索＆描画
 ==============================
-*/
-
-function update() {
-  galleryDiv.innerHTML = "";
-
-  const filtered = data.filter(item => {
-    return conditionKeys.every(key => {
-      return item[key] === selects[key].value;
-    });
-  });
-
-  filtered.forEach(item => {
+*/ 
+ 
+function update() { 
+  galleryDiv.innerHTML = ""; 
+ 
+  const filtered = data.filter(item => { 
+    return conditionKeys.every(key => { 
+      return item[key] === selects[key].value; 
+    }); 
+  }); 
+ 
+  if (filtered.length === 0) {
     const img = document.createElement("img");
-    img.src = `images/${item.src}`;
-    img.alt = item.src;
+    img.src = "images/00000.png";
+    img.alt = "00000.png";
     galleryDiv.appendChild(img);
-  });
-}
+    return;
+  }
+ 
+  filtered.forEach(item => { 
+    const img = document.createElement("img"); 
+    img.src = `images/${item.src}`; 
+    img.alt = item.src; 
+    galleryDiv.appendChild(img); 
+  }); 
+} 
 
 
 /*
